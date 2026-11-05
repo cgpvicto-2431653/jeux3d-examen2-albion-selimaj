@@ -11,9 +11,42 @@ public class Surface : MonoBehaviour
     [SerializeField, Tooltip("Positions de génération des objets sur la surface.")]
     private Vector3[] positionGeneration;
 
+    private Animator animator;
+
     private void Awake()
     {
         Detecteur = GetComponent<DetecteurBoule>();
+        animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        if (ControleurJeu.Instance.EstEnPause)
+            MettreEnPause();
+
+        ControleurJeu.Instance.PauseDesactive += MettreEnPause;
+        ControleurJeu.Instance.PauseActive += EnleverPause;
+    }
+
+    private void OnDestroy()
+    {
+        if (ControleurJeu.Instance != null)
+        {
+            ControleurJeu.Instance.PauseDesactive -= MettreEnPause;
+            ControleurJeu.Instance.PauseActive -= EnleverPause;
+        }
+    }
+
+    private void MettreEnPause()
+    {
+        if (animator != null)
+            animator.speed = 0f;
+    }
+
+    private void EnleverPause()
+    {
+        if (animator != null)
+            animator.speed = 1f;
     }
 
     /// <summary>

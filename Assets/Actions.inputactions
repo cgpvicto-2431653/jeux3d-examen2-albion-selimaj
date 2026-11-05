@@ -35,6 +35,16 @@
                     "interactions": "",
                     "initialStateCheck": true,
                     "priority": 0
+                },
+                {
+                    "name": "AcheterPause",
+                    "type": "Button",
+                    "id": "9f7a0b3c-d153-499e-9c80-a16a6d8d15d9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -103,6 +113,17 @@
                     "action": "Diriger",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0f299251-cbe3-488c-b495-a1462106343a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AcheterPause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,6 +33,12 @@ public class Boule : MonoBehaviour
     [SerializeField, Tooltip("Multiplicateur de force appliqué lors de l'accélération.")]
     float multiplicateurForceAcceleration = 15.0f;
 
+    [SerializeField, Tooltip("Cout de la pause en nombre de pieces")]
+    int coutDeLaPause = 5;
+
+    public int NombrePieces { get; private set; }
+    public event System.Action<int> PieceChangees;
+
     /// <summary>
     /// Obtient la vélocité actuelle de la boule.
     /// </summary>
@@ -44,6 +51,7 @@ public class Boule : MonoBehaviour
 
         PlayerInput controles = ControleurJeu.Instance.Controles;
         controles.actions.FindAction("Commencer").performed += CommencerJeu;
+        ControleurJeu.Instance.Controles.actions.FindAction("AcheterPause").performed += AcheterPause;
     }
 
     private void OnDestroy()
@@ -59,6 +67,9 @@ public class Boule : MonoBehaviour
         controles.actions.FindAction("Diriger").performed -= CommencerDirection;
         controles.actions.FindAction("Diriger").canceled -= ArreterDirection;
         controles.actions.FindAction("Accelerer").performed -= UtiliserChargeAcceleration;
+
+        if (ControleurJeu.Instance != null && ControleurJeu.Instance.Controles != null)
+            ControleurJeu.Instance.Controles.actions.FindAction("AcheterPause").performed -= AcheterPause;
     }
 
     /// <summary>
@@ -134,5 +145,21 @@ public class Boule : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         enAcceleration = false;
+    }
+
+    public void AjouterPiece() 
+    {
+        NombrePieces++;
+        PieceChangees?.Invoke(NombrePieces);
+    }
+
+    private void AcheterPause(InputAction.CallbackContext context)
+    {
+        if (NombrePieces >= coutDeLaPause && !ControleurJeu.Instance.EstEnPause)
+        {
+            NombrePieces -= coutDeLaPause;
+            PieceChangees?.Invoke(NombrePieces);
+            ControleurJeu.Instance.DeclencherPause();
+        }
     }
 }

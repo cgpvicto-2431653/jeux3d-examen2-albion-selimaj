@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -23,6 +24,9 @@ public class InformationInterface : MonoBehaviour
     [SerializeField, Tooltip("Référence à la boule.")]
     private Boule boule;
 
+    [SerializeField, Tooltip("Référence au compteur de pieces.")]
+    private TextMeshProUGUI textePieces;
+
     // / Temps écoulé depuis le début du jeu
     private float tempsEcoule;
 
@@ -30,6 +34,8 @@ public class InformationInterface : MonoBehaviour
     {
         tempsEcoule = 0f;
         ControleurJeu.Instance.Controles.actions.FindAction("Commencer").performed += CommencerJeu;
+        boule.PieceChangees += MettreAJourPieces;
+        textePieces.text = "0";
     }
 
     private void OnDestroy()
@@ -43,6 +49,11 @@ public class InformationInterface : MonoBehaviour
             return;
 
         controles.actions.FindAction("Commencer").performed -= CommencerJeu;
+
+        if (boule != null)
+        { 
+            boule.PieceChangees -= MettreAJourPieces;
+        }
     }
 
     /// <summary>
@@ -66,6 +77,14 @@ public class InformationInterface : MonoBehaviour
         {
             tempsEcoule += Time.deltaTime;
             yield return null;
+        }
+    }
+
+    private void MettreAJourPieces(int nbPieces)
+    {
+        if (textePieces != null) 
+        {
+            textePieces.text = nbPieces.ToString();
         }
     }
 

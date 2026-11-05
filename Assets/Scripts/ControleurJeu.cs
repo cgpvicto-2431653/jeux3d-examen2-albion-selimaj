@@ -14,6 +14,11 @@ public class ControleurJeu : MonoBehaviour
     [field:SerializeField, Tooltip("Référence aux contrôles du joueur.")]
     public PlayerInput Controles { get; private set; }
 
+    public bool EstEnPause { get; private set; }
+    public event System.Action PauseActive;
+    public event System.Action PauseDesactive;
+
+
     private void Awake()
     {
         if(Instance == null)
@@ -24,5 +29,24 @@ public class ControleurJeu : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void DeclencherPause()
+    {
+        if (!EstEnPause)
+            StartCoroutine(Pause());
+    }
+
+    private System.Collections.IEnumerator Pause()
+    {
+        EstEnPause = true;
+        PauseActive?.Invoke();
+
+        Time.timeScale = 0.0f;
+        yield return new WaitForSecondsRealtime(3.0f);
+        Time.timeScale = 1.0f;
+
+        EstEnPause = false;
+        PauseDesactive?.Invoke();
     }
 }

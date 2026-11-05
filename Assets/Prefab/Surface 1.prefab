@@ -88,19 +88,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9444a52997b469145b988d523c482761, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.70667607
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9444a52997b469145b988d523c482761, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.024677735
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9444a52997b469145b988d523c482761, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: -0.70667607
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9444a52997b469145b988d523c482761, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.024677735
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9444a52997b469145b988d523c482761, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -112,7 +112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9444a52997b469145b988d523c482761, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 9444a52997b469145b988d523c482761, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -141,6 +141,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9444a52997b469145b988d523c482761, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3403871801901988932}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9444a52997b469145b988d523c482761, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1566858587909092989}
   m_SourcePrefab: {fileID: 100100000, guid: 9444a52997b469145b988d523c482761, type: 3}
 --- !u!4 &5100729750464324684 stripped
 Transform:
@@ -223,3 +226,25 @@ MonoBehaviour:
   - {x: 0, y: 0.5, z: 0.5}
   - {x: 0, y: 0.5, z: -0.5}
   - {x: -2, y: 0.5, z: 0}
+--- !u!95 &1566858587909092989
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5585235405789282038}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8726b5d9aa952464ab919f112cf5da3c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
